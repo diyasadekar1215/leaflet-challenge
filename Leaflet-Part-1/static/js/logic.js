@@ -1,7 +1,7 @@
 // URL for fetching earthquake data (All Earthquakes from the Past Month)
 const queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson";
 
-// Perform a GET request to the query URL
+// Performing a GET request to the query URL
 d3.json(queryUrl).then(function (data) {
   console.log(data); // Log to confirm data fetching
   createFeatures(data.features); // Send the features array to the createFeatures function
@@ -35,7 +35,7 @@ function createFeatures(earthquakeData) {
     `);
   }
 
-  // Create a GeoJSON layer containing the features array
+  // Creating a GeoJSON layer containing the features array
   var earthquakes = L.geoJSON(earthquakeData, {
     onEachFeature: onEachFeature, // Attach popups
     pointToLayer: function (feature, latlng) {
@@ -49,7 +49,7 @@ function createFeatures(earthquakeData) {
     }
   });
 
-  // Pass the earthquakes layer to the createMap function
+  // Passing the earthquakes layer to the createMap function
   createMap(earthquakes);
 }
 
@@ -61,30 +61,30 @@ function createMap(earthquakes) {
     maxZoom: 19
   });
 
-  // Create baseMaps object to hold the base layer
+  // Creating baseMaps object to hold the base layer
   var baseMaps = {
     "Grayscale Map": baseLayer
   };
 
-  // Create an overlayMaps object to hold the earthquake layer
+  // Creating an overlayMaps object to hold the earthquake layer
   var overlayMaps = {
     Earthquakes: earthquakes
   };
 
-  // Initialize the map with the center and zoom level, and set layers
+  // Initializing the map with the center and zoom level, and set layers
   var myMap = L.map("map", {
     center: [37.09, -95.71], // Latitude and Longitude for center of USA
     zoom: 5, // Initial zoom level
     layers: [baseLayer, earthquakes] // Layers to display on the map initially
   });
 
-  // Add a legend to the map with gradient colors and depth values
+  // Adding a legend to the map with gradient colors and depth values
   var legend = L.control({ position: "bottomright" });
 
   legend.onAdd = function () {
     var div = L.DomUtil.create("div", "info legend");
 
-    // Create color scale for depth
+    // Creating color scale for depth
     var depth = [-10, 10, 30, 50, 70, 90, 100]; // Depth ranges
     var colors = [
       "#98ee00", "#d4ee00", "#eecc00", "#ee9c00", "#ea822c", "#ea2c2c"
@@ -92,7 +92,7 @@ function createMap(earthquakes) {
 
     div.innerHTML = "<h3>Depth (km)</h3>";
 
-    // Loop through depth ranges and add color swatches with labels
+    // Looping through depth ranges and add color swatches with labels
     for (var i = 0; i < depth.length; i++) {
       div.innerHTML +=
         '<i style="background:' + colors[i] + '"></i> ' +
@@ -104,6 +104,6 @@ function createMap(earthquakes) {
 
   legend.addTo(myMap);
 
-  // Add layer control to toggle overlays
+  // Adding layer control to toggle overlays
   L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(myMap);
 }
