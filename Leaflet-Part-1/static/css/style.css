@@ -1,0 +1,43 @@
+/* Base styling for the map and body */
+body {
+  padding: 0;
+  margin: 0;
+}
+
+#map,
+body,
+html {
+  height: 100%;
+}
+
+/* Styling for the legend */
+.info {
+  padding: 5px 10px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.legend {
+  line-height: 25px;
+  color: #000;
+}
+
+.legend i {
+  width: 20px;
+  height: 20px;
+  float: left;
+  margin-right: 8px;
+  border-radius: 3px;
+  opacity: 0.9;
+}
+
+h3 {
+  margin: 0;
+  padding: 5px;
+  font-family: Arial, sans-serif;
+}
+
+p {
+  font-family: Arial, sans-serif;
+}
